@@ -2,8 +2,8 @@
 
 ### TODO
 
-- [ ] Deploy (vercel)
-- [ ] Basic UI with mocked data
+- [x] Deploy (vercel)
+- [x] Basic UI with mocked data
 - [ ] Set up Database (vercel postgress)
 - [ ] Connect Database with UI
 - [ ] Add auth
