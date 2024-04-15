@@ -6,7 +6,7 @@
 - [x] Basic UI with mocked data
 - [x] Tidy up build process
 - [x] Set up Database (vercel postgress)
-- [ ] Connect Database with UI
+- [x] Connect Database with UI
 - [ ] Add auth
 - [ ] Add image upload
 - [ ] Error management (Sentry)
