@@ -22,7 +22,7 @@ export function Modal({ children }: { children: React.ReactNode }) {
     <dialog
       ref={dialogRef}
       onClose={onDismiss}
-      className="m-0 h-screen w-screen bg-zinc-900/50 text-white"
+      className="m-0 h-screen w-screen bg-black/60 text-white backdrop-blur-lg"
     >
       {children}
       {/* <button onClick={onDismiss} className="w-20 p-4 " /> */}
