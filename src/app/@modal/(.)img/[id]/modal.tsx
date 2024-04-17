@@ -22,10 +22,10 @@ export function Modal({ children }: { children: React.ReactNode }) {
     <dialog
       ref={dialogRef}
       onClose={onDismiss}
-      className="m-0 h-screen w-screen bg-zinc-900/50"
+      className="m-0 h-screen w-screen bg-zinc-900/50 text-white"
     >
       {children}
-      <button onClick={onDismiss} className="w-20 p-4 " />
+      {/* <button onClick={onDismiss} className="w-20 p-4 " /> */}
     </dialog>,
     document.querySelector("#modal-root")!,
   );
