@@ -80,3 +80,21 @@ dialog:modal {
   max-height: 100vh;
 }
 
+/* from https://github.com/n3r4zzurr0/svg-spinners/blob/main/svg-css/bars-fade.svg?short_path=bcf8790 */
+.spinner_GmWz {
+  animation: spinner_Ctle 0.8s linear infinite;
+  animation-delay: -0.8s;
+}
+.spinner_NuDr {
+  animation-delay: -0.65s;
+}
+.spinner_OlQ0 {
+  animation-delay: -0.5s;
+}
+@keyframes spinner_Ctle {
+  93.75%,
+  100% {
+    opacity: 0.2;
+  }
+}
+

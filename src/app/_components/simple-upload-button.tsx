@@ -53,15 +53,49 @@ function UploadSVG() {
   );
 }
 
+function LoadingSpinnerSVG() {
+  return (
+    <svg
+      fill="white"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <rect className="spinner_GmWz" x="1" y="4" width="6" height="14" />
+      <rect
+        className="spinner_GmWz spinner_NuDr"
+        x="9"
+        y="4"
+        width="6"
+        height="14"
+      />
+      <rect
+        className="spinner_GmWz spinner_OlQ0"
+        x="17"
+        y="4"
+        width="6"
+        height="14"
+      />
+    </svg>
+  );
+}
+
 export function SimpleUploadButton() {
   const router = useRouter();
   const { inputProps } = useUploadThingInputProps("imageUploader", {
     onUploadBegin() {
-      toast("Uploading...", { duration: 300000, id: "upload-begin" });
+      toast(
+        <div className="flex items-center gap-2">
+          <LoadingSpinnerSVG />
+          <span className="text-lg">Uploading...</span>
+        </div>,
+        { duration: 300000, id: "upload-begin" },
+      );
     },
     onClientUploadComplete() {
       router.refresh();
-      toast("Upload Complete", { id: "upload-begin" });
+      toast("Upload Complete", { duration: 3000, id: "upload-begin" });
     },
   });
 
