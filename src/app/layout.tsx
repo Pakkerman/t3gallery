@@ -3,15 +3,16 @@ import "~/styles/globals.css";
 import { ClerkProvider } from "@clerk/nextjs";
 import { NextSSRPlugin } from "@uploadthing/react/next-ssr-plugin";
 import "@uploadthing/react/styles.css";
-import { Inter } from "next/font/google";
+import { Nunito_Sans as Font } from "next/font/google";
 import { extractRouterConfig } from "uploadthing/server";
 import { Toaster } from "~/components/ui/sonner";
+import { CSPostHogProvider } from "./_analytics/provider";
 import { TopNav } from "./_components/topnav";
 import { ourFileRouter } from "./api/uploadthing/core";
-import { CSPostHogProvider } from "./_analytics/provider";
 
-const inter = Inter({
+const font = Font({
   subsets: ["latin"],
+  weight: ["300", "400", "700"],
   variable: "--font-sans",
 });
 
@@ -41,7 +42,7 @@ export default function RootLayout({
              */
             routerConfig={extractRouterConfig(ourFileRouter)}
           />
-          <body className={`${inter.variable} dark font-sans`}>
+          <body className={`${font.variable} dark bg-zinc-950 font-sans `}>
             <div className="grid h-screen grid-rows-[auto,1fr]">
               <TopNav />
               <main className="overflow-y-scroll">{children}</main>
