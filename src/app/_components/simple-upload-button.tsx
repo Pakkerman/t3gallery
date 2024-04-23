@@ -102,6 +102,12 @@ export function SimpleUploadButton() {
       router.refresh();
       toast("Upload Complete", { duration: 3000, id: "upload-begin" });
     },
+
+    onUploadError(error) {
+      posthog.capture("upload error", { error });
+      toast.dismiss("upload-begin");
+      toast.error("Upload failed");
+    },
   });
 
   return (
