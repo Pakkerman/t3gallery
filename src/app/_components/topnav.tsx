@@ -13,9 +13,51 @@ export function TopNav() {
         </SignedOut>
         <SignedIn>
           <SimpleUploadButton />
-          <UserButton />
+          <div className="relative flex h-10 w-10 items-center justify-center rounded-full border-2 border-emerald-400 ">
+            <div className="top absolute flex h-7 w-7 items-center justify-center rounded-full bg-emerald-800">
+              <SpinnerBlock />
+            </div>
+            <UserButton />
+          </div>
         </SignedIn>
       </div>
     </nav>
+  );
+}
+
+function SpinnerBlock() {
+  return (
+    <svg
+      fill="white"
+      width="16"
+      height="16"
+      viewBox="0 0 24 24"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <rect
+        className="spinner_9y7u opacity-70"
+        x="1"
+        y="1"
+        rx="1"
+        width="10"
+        height="10"
+      />
+      <rect
+        className="spinner_9y7u spinner_DF2s opacity-80"
+        x="1"
+        y="1"
+        rx="1"
+        width="10"
+        height="10"
+      />
+      <rect
+        className="spinner_9y7u spinner_q27e opacity-90"
+        x="1"
+        y="1"
+        rx="1"
+        width="10"
+        height="10"
+      />
+    </svg>
   );
 }
