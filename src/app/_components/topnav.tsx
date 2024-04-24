@@ -4,7 +4,7 @@ import { SimpleUploadButton } from "./simple-upload-button";
 export function TopNav() {
   return (
     <nav className="flex w-full items-center justify-between border-b p-4 text-xl font-semibold">
-      <div className="  bg-gradient-to-r from-emerald-400 from-20% to-yellow-300 bg-clip-text text-3xl font-bold leading-none text-transparent transition">
+      <div className="bg-gradient-to-r from-emerald-400 from-20% to-yellow-300 bg-clip-text text-3xl font-bold leading-none text-transparent transition">
         T3G<span className="">allery</span>
       </div>
       <div className="flex flex-row items-center gap-4 ">
@@ -14,7 +14,7 @@ export function TopNav() {
         <SignedIn>
           <SimpleUploadButton />
           <div className="relative flex h-10 w-10 items-center justify-center rounded-full border-2 border-emerald-400 ">
-            <div className="top absolute flex h-7 w-7 items-center justify-center rounded-full bg-emerald-800">
+            <div className="absolute flex h-7 w-7 items-center justify-center rounded-full bg-emerald-800">
               <SpinnerBlock />
             </div>
             <UserButton />
@@ -29,6 +29,7 @@ function SpinnerBlock() {
   return (
     <svg
       fill="white"
+      opacity="80"
       width="16"
       height="16"
       viewBox="0 0 24 24"
