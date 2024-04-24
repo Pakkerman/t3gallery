@@ -5,9 +5,5 @@ export default async function PhotoPage({
 }: {
   params: { id: string };
 }) {
-  return (
-    <div>
-      <FullPageImageView photoId={photoId} />
-    </div>
-  );
+  return <FullPageImageView photoId={photoId} />;
 }

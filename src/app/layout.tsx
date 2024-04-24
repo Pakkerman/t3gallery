@@ -42,11 +42,13 @@ export default function RootLayout({
              */
             routerConfig={extractRouterConfig(ourFileRouter)}
           />
-          <body className={`${font.variable} dark bg-zinc-950 font-sans `}>
-            <div className="grid h-screen grid-rows-[auto,1fr]">
+          <body
+            className={`${font.variable} dark h-[100svh] bg-zinc-950 font-sans`}
+          >
+            <div className="flex h-full flex-col">
               <TopNav />
-              <main className="overflow-y-scroll">{children}</main>
-            </div>{" "}
+              <main className="h-full grow overflow-y-scroll">{children}</main>
+            </div>
             {modal}
             <div id="modal-root" />
             <Toaster />

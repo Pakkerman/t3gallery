@@ -21,7 +21,9 @@
 
 ## Challenges
 
-- [ ] Fix the page layout for images of different resolutions
+- [x] Fix the page layout for images of different resolutions
+  - [ ]
+  - [ ]
 - [ ] "selecting" images on the gallery page
 - [ ] Infinite scroll
 - [ ] Folders and Albums
