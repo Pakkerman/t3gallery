@@ -1,11 +1,14 @@
 import { SignInButton, SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
 import { SimpleUploadButton } from "./simple-upload-button";
+import Link from "next/link";
 
 export function TopNav() {
   return (
     <nav className="flex w-full shrink items-center justify-between border-b p-4 text-xl font-semibold">
       <div className="bg-gradient-to-r from-emerald-400 from-20% to-yellow-300 bg-clip-text text-3xl font-bold leading-none text-transparent transition">
-        T3G<span className="">allery</span>
+        <Link href="/">
+          T3G<span className="">allery</span>
+        </Link>
       </div>
       <div className="flex flex-row items-center gap-4 ">
         <SignedOut>
