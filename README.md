@@ -25,5 +25,12 @@
 - [x] Delete files on Uploadthing side
 
 - [ ] "selecting" images on the gallery page
+
+  - [x] Extract component
+  - [x] Selecting individual image
+  - [ ] Select All
+  - [ ] Batch action ( download, delete )
+  - [ ] ...
+
 - [ ] Infinite scroll
 - [ ] Folders and Albums
