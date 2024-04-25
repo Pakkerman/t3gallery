@@ -1,5 +1,6 @@
 import { clerkClient } from "@clerk/nextjs/server";
 import Image from "next/image";
+import { DownloadSVG } from "~/components/svgs";
 import { Button } from "~/components/ui/button";
 import { deleteImage, getImage } from "~/server/db/queries";
 
@@ -12,7 +13,6 @@ export default async function FullPageImageView(props: { photoId: string }) {
 
   return (
     <div className="flex h-full flex-col items-center justify-between text-yellow-200">
-      {/* TODO: finish layout */}
       <div className="h-0 w-[90%] grow ">
         <Image
           className="h-full w-full object-contain"
@@ -38,9 +38,9 @@ export default async function FullPageImageView(props: { photoId: string }) {
           </div>
 
           <div className="flex gap-4 ">
-            <Button type="submit" className="flex">
-              Download
-            </Button>
+            <div className="flex w-12 px-2 text-yellow-50">
+              <DownloadSVG />
+            </div>
             <form
               action={async () => {
                 // BUG: won't redirect from back to "/" from modal
