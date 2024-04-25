@@ -6,8 +6,6 @@ export const dynamic = "force-dynamic";
 // force the data to update on the next visit
 
 export default async function HomePage() {
-  const images = await getMyImages();
-
   return (
     <main className="h-full">
       <SignedOut>
@@ -16,8 +14,14 @@ export default async function HomePage() {
         </div>
       </SignedOut>
       <SignedIn>
-        <Gallery images={images} />
+        <GalleryWrapper />
       </SignedIn>
     </main>
   );
+}
+
+// Work around for server-only query call
+async function GalleryWrapper() {
+  const images = await getMyImages();
+  return <Gallery images={[...images, ...images, ...images]} />;
 }
