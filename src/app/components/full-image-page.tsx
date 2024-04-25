@@ -45,7 +45,7 @@ export default async function FullPageImageView(props: { photoId: string }) {
               action={async () => {
                 // BUG: won't redirect from back to "/" from modal
                 "use server";
-                await deleteImage(idAsNumber);
+                await deleteImage(idAsNumber, image.key);
               }}
             >
               <Button type="submit" variant="destructive" className="flex">

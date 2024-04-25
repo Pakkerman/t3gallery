@@ -5,6 +5,9 @@ import "server-only";
 import { db } from "~/server/db";
 import { images } from "./schema";
 import analyticsServerClient from "../analytics";
+import { UTApi } from "uploadthing/server";
+
+const { deleteFiles } = new UTApi();
 
 export async function getMyImages() {
   const user = auth();
@@ -26,14 +29,14 @@ export async function getImage(id: number) {
   const image = await db.query.images.findFirst({
     where: eq(images.id, id),
   });
-  if (!image) throw new Error("Image not found");
 
+  if (!image) throw new Error("Image not found");
   if (image.userId !== user.userId) throw new Error("Unauthorized");
 
   return image;
 }
 
-export async function deleteImage(id: number) {
+export async function deleteImage(id: number, key: string) {
   const user = auth();
   if (!user.userId) throw new Error("Unauthorized");
 
@@ -48,6 +51,11 @@ export async function deleteImage(id: number) {
       imageId: id,
     },
   });
+
+  const success = await deleteFiles(key);
+  if (!success) {
+    console.log("something wrong with deleting on the ut side");
+  }
 
   redirect("/");
 }
