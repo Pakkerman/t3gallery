@@ -22,8 +22,8 @@
 ## Challenges
 
 - [x] Fix the page layout for images of different resolutions
-  - [ ]
-  - [ ]
+- [x] Delete files on Uploadthing side
+
 - [ ] "selecting" images on the gallery page
 - [ ] Infinite scroll
 - [ ] Folders and Albums

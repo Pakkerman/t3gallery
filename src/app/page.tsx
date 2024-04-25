@@ -1,45 +1,22 @@
 import { SignedIn, SignedOut } from "@clerk/nextjs";
-import Image from "next/image";
-import Link from "next/link";
+import { Gallery } from "./_components/gallery";
 import { getMyImages } from "~/server/db/queries";
 
 export const dynamic = "force-dynamic";
 // force the data to update on the next visit
 
-async function Images() {
+export default async function HomePage() {
   const images = await getMyImages();
 
   return (
-    <div className="flex select-none flex-wrap justify-center gap-4 p-4">
-      {images.map((item) => (
-        <div key={item.id} className="flex h-36 w-48  flex-col">
-          <Link href={`/img/${item.id}`}>
-            <div className="flex h-28 flex-col overflow-hidden rounded-md ">
-              <Image
-                className="h-[200px] object-cover"
-                src={item.url}
-                style={{ objectFit: "cover", height: "200px" }}
-                width={192}
-                height={192}
-                alt={`image-${item.id}`}
-              />
-            </div>
-          </Link>
-          {/* <p className="">{item.name}</p> */}
-        </div>
-      ))}
-    </div>
-  );
-}
-
-export default async function HomePage() {
-  return (
-    <main className="">
+    <main className="h-full">
       <SignedOut>
-        <div className="h-full w-full text-center text-2xl">Please sign in</div>
+        <div className="flex h-full w-full items-center justify-center text-center text-2xl">
+          <p className="">Please sign in first</p>
+        </div>
       </SignedOut>
       <SignedIn>
-        <Images />
+        <Gallery images={images} />
       </SignedIn>
     </main>
   );
