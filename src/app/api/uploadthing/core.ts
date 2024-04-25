@@ -23,9 +23,12 @@ export const ourFileRouter = {
       return { userId: user.userId };
     })
     .onUploadComplete(async ({ metadata, file }) => {
+      console.log(metadata, file);
       await db.insert(images).values({
         name: file.name,
         url: file.url,
+        key: file.key,
+        size: file.size,
         userId: metadata.userId,
       });
 
