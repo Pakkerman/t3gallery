@@ -25,7 +25,7 @@ export default async function FullPageImageView(props: { photoId: string }) {
       <div className="flex w-full shrink-0 flex-col border-b border-t">
         <div className="w-full border-b py-2 text-center">{image.name}</div>
         <div className="flex justify-between px-4 py-2">
-          <div className="flex gap-2">
+          <div className="flex gap-4 text-sm">
             <div className="flex flex-col ">
               <span>Uploaded By:</span>
               <span>{uploaderInfo.fullName}</span>
@@ -37,7 +37,7 @@ export default async function FullPageImageView(props: { photoId: string }) {
             </div>
           </div>
 
-          <div className="flex gap-2 ">
+          <div className="flex gap-4 ">
             <Button type="submit" className="flex">
               Download
             </Button>
