@@ -1,14 +1,16 @@
+import "@uploadthing/react/styles.css";
 import "~/styles/globals.css";
 
 import { ClerkProvider } from "@clerk/nextjs";
 import { NextSSRPlugin } from "@uploadthing/react/next-ssr-plugin";
-import "@uploadthing/react/styles.css";
+
 import { Nunito_Sans as Font } from "next/font/google";
 import { extractRouterConfig } from "uploadthing/server";
+import { ourFileRouter } from "./api/uploadthing/core";
+
 import { Toaster } from "~/components/ui/sonner";
 import { CSPostHogProvider } from "./_analytics/provider";
 import { TopNav } from "./_components/topnav";
-import { ourFileRouter } from "./api/uploadthing/core";
 
 const font = Font({
   subsets: ["latin"],
