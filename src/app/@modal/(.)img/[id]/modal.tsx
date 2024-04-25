@@ -22,7 +22,7 @@ export function Modal({ children }: { children: React.ReactNode }) {
     <dialog
       ref={dialogRef}
       onClose={onDismiss}
-      className="m-0 h-screen w-screen bg-black/60 text-white backdrop-blur-lg"
+      className="m-0 h-[100svh] w-screen bg-black/60 text-white backdrop-blur-lg"
       onClick={() => router.back()}
     >
       {children}
