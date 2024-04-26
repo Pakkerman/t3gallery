@@ -2,50 +2,87 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useState } from "react";
+
 import { Button } from "~/components/ui/button";
 import type { SelectImage } from "~/server/db/schema";
 
 export function Gallery({ images }: { images: SelectImage[] }) {
   const [selecting, setSelecting] = useState(false);
+  const [selections, setSelections] = useState<Array<number>>([]);
+
+  const select = (id: number) => {
+    if (selections.includes(id)) {
+      setSelections([...selections.filter((item) => item !== id)]);
+    } else {
+      setSelections((prev) => [...prev, id]);
+    }
+  };
 
   return (
-    <section className="flex select-none flex-wrap justify-center gap-4 p-4">
-      {images.map((item) => (
-        <Link key={item.key} href={`${selecting ? "#" : "/img/" + item.id}`}>
-          <GalleryItem item={item} selecting={selecting} />
-        </Link>
-      ))}
-      <Button
-        className="fixed bottom-[2.5%] right-[5%] rounded-full"
-        onClick={() => setSelecting((prev) => !prev)}
-      >
-        {selecting ? "+" : "X"}
-      </Button>
+    <section>
+      <ul className="flex select-none flex-wrap justify-center gap-4 p-4">
+        {images.map((item) => (
+          <Link
+            key={item.id}
+            href={selecting ? "" : `/img/${item.id}`}
+            onClick={() => {
+              if (selecting) {
+                select(item.id);
+              }
+            }}
+          >
+            <GalleryItem item={item} selected={selections.includes(item.id)} />
+          </Link>
+        ))}
+      </ul>
+
+      <div className="fixed bottom-[2.5%] right-[5%] flex gap-2">
+        {selecting && (
+          <Button
+            className="rounded-full"
+            variant="default"
+            onClick={() => {
+              if (selections.length === images.length) {
+                setSelections([]);
+              } else {
+                setSelections([...images.map((item) => item.id)]);
+              }
+            }}
+          >
+            {selections.length === images.length
+              ? "Deselect all"
+              : "Select all"}
+          </Button>
+        )}
+        <Button
+          className="rounded-full"
+          variant="default"
+          onClick={() => {
+            // TODO: here
+            if (selecting) {
+              setSelections([]);
+            }
+            setSelecting((prev) => !prev);
+          }}
+        >
+          {selecting ? selections.length : "+"}
+        </Button>
+      </div>
     </section>
   );
 }
 
 function GalleryItem({
   item,
-  selecting,
+  selected,
 }: {
   item: SelectImage;
-  selecting: boolean;
+  selected: boolean;
 }) {
-  const [selected, setSelected] = useState(false);
-
-  useEffect(() => {
-    setSelected(false);
-  }, [selecting]);
-
   return (
     <li
       className={`flex h-36 w-48 flex-col border-2 ${selected && "border-red-400 p-2"} transition`}
-      onClick={() => {
-        if (!selecting) return;
-        setSelected((prev) => !prev);
-      }}
     >
       <div className="flex h-36 flex-col overflow-hidden rounded-md ">
         <Image
