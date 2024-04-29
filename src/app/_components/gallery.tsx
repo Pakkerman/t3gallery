@@ -37,37 +37,48 @@ export function Gallery({ images }: { images: SelectImage[] }) {
         ))}
       </ul>
 
-      <div className="fixed bottom-[2.5%] right-[5%] flex gap-2">
-        {selecting && (
+      <div className="h-20" />
+
+      <div
+        className={`${selecting ? "opacity-100" : "opacity-0"} fixed bottom-0 z-0 h-20 w-full bg-black/40 backdrop-blur-sm transition `}
+      />
+      <div className="fixed bottom-0 z-50 flex h-20 w-full items-center justify-center ">
+        <div className="flex w-full justify-between gap-2 px-4">
+          <div className="flex grow items-center justify-between">
+            {selecting && (
+              <>
+                <Button variant="destructive">Delete selected</Button>
+
+                <Button
+                  className="rounded-full"
+                  variant="default"
+                  onClick={() => {
+                    if (selections.length === images.length) {
+                      setSelections([]);
+                    } else {
+                      setSelections([...images.map((item) => item.id)]);
+                    }
+                  }}
+                >
+                  {`${selections.length} selected`}
+                </Button>
+              </>
+            )}
+          </div>
           <Button
-            className="rounded-full"
+            className={`rounded-full border-emerald-400 ${selecting}`}
             variant="default"
             onClick={() => {
-              if (selections.length === images.length) {
+              if (selecting) {
                 setSelections([]);
-              } else {
-                setSelections([...images.map((item) => item.id)]);
               }
+
+              setSelecting((prev) => !prev);
             }}
           >
-            {selections.length === images.length
-              ? "Deselect all"
-              : "Select all"}
+            {selecting ? "X" : "+"}
           </Button>
-        )}
-        <Button
-          className="rounded-full"
-          variant="default"
-          onClick={() => {
-            // TODO: here
-            if (selecting) {
-              setSelections([]);
-            }
-            setSelecting((prev) => !prev);
-          }}
-        >
-          {selecting ? selections.length : "+"}
-        </Button>
+        </div>
       </div>
     </section>
   );

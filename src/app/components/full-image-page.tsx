@@ -1,5 +1,6 @@
 import { clerkClient } from "@clerk/nextjs/server";
 import Image from "next/image";
+import { Suspense } from "react";
 import { DownloadSVG } from "~/components/svgs";
 import { Button } from "~/components/ui/button";
 import { deleteImage, getImage } from "~/server/db/queries";
@@ -14,13 +15,17 @@ export default async function FullPageImageView(props: { photoId: string }) {
   return (
     <div className="flex h-full flex-col items-center justify-between text-yellow-200">
       <div className="h-0 w-[90%] grow ">
-        <Image
-          className="h-full w-full object-contain"
-          src={image.url}
-          width={1920}
-          height={1080}
-          alt={`image-${image.id}`}
-        />
+        <Suspense
+          fallback={<div className="h-96 w-96 bg-red-400">loading</div>}
+        >
+          <Image
+            className="h-full w-full object-contain"
+            src={image.url}
+            width={1920}
+            height={1080}
+            alt={`image-${image.id}`}
+          />
+        </Suspense>
       </div>
       <div className="flex w-full shrink-0 flex-col border-b border-t">
         <div className="w-full border-b py-2 text-center">{image.name}</div>

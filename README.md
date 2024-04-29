@@ -28,7 +28,7 @@
 
   - [x] Extract component
   - [x] Selecting individual image
-  - [ ] Select All
+  - [x] Select All
   - [ ] Batch action ( download, delete )
   - [ ] ...
 
