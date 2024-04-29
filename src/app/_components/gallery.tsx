@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import { DownloadAllButton } from "~/components/downloadButton";
-import { DownloadSVG, TrashSVG } from "~/components/svgs";
+import { TrashSVG } from "~/components/svgs";
 
 import { Button } from "~/components/ui/button";
 import type { SelectImage } from "~/server/db/schema";
@@ -46,38 +46,37 @@ export function Gallery({ images }: { images: SelectImage[] }) {
       />
       <div className="fixed bottom-0 z-50 flex h-20 w-full items-center justify-center ">
         <div className="flex w-full justify-between gap-2 px-4">
-          <div className="flex grow items-center justify-between">
-            {selecting && (
-              <>
-                <Button variant="destructive">
-                  <TrashSVG />
-                </Button>
+          <div
+            className={`${selecting ? "translate-y-[0%] opacity-100" : "translate-y-[200%] opacity-0"} flex grow items-center justify-between transition ease-in`}
+          >
+            <>
+              <Button variant="destructive" disabled={selections.length === 0}>
+                <TrashSVG />
+              </Button>
 
-                <div className="flex items-center justify-center gap-2">
-                  <Button
-                    className="rounded-full"
-                    variant="default"
-                    onClick={() => {
-                      if (selections.length === images.length) {
-                        setSelections([]);
-                      } else {
-                        setSelections([...images.map((item) => item.id)]);
-                      }
-                    }}
-                  >
-                    {`${selections.length} selected`}
-                  </Button>
-                  <DownloadAllButton
-                    images={images.filter((item) =>
-                      selections.includes(item.id),
-                    )}
-                  />
-                </div>
-              </>
-            )}
+              <div className="flex items-center justify-center gap-2">
+                <Button
+                  className="rounded-full"
+                  variant="default"
+                  onClick={() => {
+                    if (selections.length === images.length) {
+                      setSelections([]);
+                    } else {
+                      setSelections([...images.map((item) => item.id)]);
+                    }
+                  }}
+                >
+                  {`${selections.length} selected`}
+                </Button>
+                <DownloadAllButton
+                  disabled={selections.length === 0}
+                  images={images.filter((item) => selections.includes(item.id))}
+                />
+              </div>
+            </>
           </div>
           <Button
-            className={`rounded-full border-emerald-400 ${selecting}`}
+            className={`${selecting ? "rounded-md" : "rounded-full"}`}
             variant="default"
             onClick={() => {
               if (selecting) {

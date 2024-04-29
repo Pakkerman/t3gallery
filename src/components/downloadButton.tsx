@@ -3,10 +3,17 @@ import { Button } from "~/components/ui/button";
 import { DownloadSVG } from "./svgs";
 import { SelectImage } from "~/server/db/schema";
 
-export function DownloadAllButton({ images }: { images: SelectImage[] }) {
+export function DownloadAllButton({
+  images,
+  disabled,
+}: {
+  images: SelectImage[];
+  disabled: boolean;
+}) {
   return (
     <Button
       variant="default"
+      disabled={disabled}
       onClick={() => {
         let i = 0;
         for (const image of images) {
