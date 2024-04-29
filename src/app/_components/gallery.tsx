@@ -3,6 +3,8 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
+import { DownloadAllButton } from "~/components/downloadButton";
+import { DownloadSVG, TrashSVG } from "~/components/svgs";
 
 import { Button } from "~/components/ui/button";
 import type { SelectImage } from "~/server/db/schema";
@@ -47,21 +49,30 @@ export function Gallery({ images }: { images: SelectImage[] }) {
           <div className="flex grow items-center justify-between">
             {selecting && (
               <>
-                <Button variant="destructive">Delete selected</Button>
-
-                <Button
-                  className="rounded-full"
-                  variant="default"
-                  onClick={() => {
-                    if (selections.length === images.length) {
-                      setSelections([]);
-                    } else {
-                      setSelections([...images.map((item) => item.id)]);
-                    }
-                  }}
-                >
-                  {`${selections.length} selected`}
+                <Button variant="destructive">
+                  <TrashSVG />
                 </Button>
+
+                <div className="flex items-center justify-center gap-2">
+                  <Button
+                    className="rounded-full"
+                    variant="default"
+                    onClick={() => {
+                      if (selections.length === images.length) {
+                        setSelections([]);
+                      } else {
+                        setSelections([...images.map((item) => item.id)]);
+                      }
+                    }}
+                  >
+                    {`${selections.length} selected`}
+                  </Button>
+                  <DownloadAllButton
+                    images={images.filter((item) =>
+                      selections.includes(item.id),
+                    )}
+                  />
+                </div>
               </>
             )}
           </div>

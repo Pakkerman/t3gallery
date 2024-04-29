@@ -11,13 +11,13 @@ export function TopNav() {
           T3G<span className="">allery</span>
         </Link>
       </div>
-      <div className="flex flex-row items-center gap-4 ">
+      <div className="flex gap-4">
         <SignedOut>
           <SignInButton />
         </SignedOut>
         <SignedIn>
           <SimpleUploadButton />
-          <div className="relative flex h-10 w-10 items-center justify-center rounded-full border-2 border-emerald-400 ">
+          <div className="relative flex h-10 w-10 items-center justify-center rounded-full border-2 border-emerald-400">
             <div className="absolute flex h-7 w-7 items-center justify-center rounded-full bg-emerald-800">
               <SpinnerBlock />
             </div>

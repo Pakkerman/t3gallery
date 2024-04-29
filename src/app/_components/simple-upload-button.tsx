@@ -4,6 +4,7 @@ import { useRouter } from "next/navigation";
 import { usePostHog } from "posthog-js/react";
 import { toast } from "sonner";
 import { LoadingSpinnerSVG, UploadSVG } from "~/components/svgs";
+import { Button } from "~/components/ui/button";
 import { useUploadThing } from "~/utils/uploadthing";
 
 // inferred input off useUploadThing
@@ -64,7 +65,9 @@ export function SimpleUploadButton() {
   return (
     <div>
       <label htmlFor="upload-button">
-        <UploadSVG />
+        <Button variant="ghost">
+          <UploadSVG size={24} />
+        </Button>
       </label>
       <input
         type="file"

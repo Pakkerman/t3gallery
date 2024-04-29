@@ -1,7 +1,8 @@
 import { clerkClient } from "@clerk/nextjs/server";
 import Image from "next/image";
 import { Suspense } from "react";
-import { DownloadSVG } from "~/components/svgs";
+import { DownloadButton } from "~/components/downloadButton";
+import { TrashSVG } from "~/components/svgs";
 import { Button } from "~/components/ui/button";
 import { deleteImage, getImage } from "~/server/db/queries";
 
@@ -42,10 +43,8 @@ export default async function FullPageImageView(props: { photoId: string }) {
             </div>
           </div>
 
-          <div className="flex gap-4 ">
-            <div className="flex w-12 px-2 text-yellow-50">
-              <DownloadSVG />
-            </div>
+          <div className="flex gap-4">
+            <DownloadButton image={image} />
             <form
               action={async () => {
                 // BUG: won't redirect from back to "/" from modal
@@ -54,7 +53,7 @@ export default async function FullPageImageView(props: { photoId: string }) {
               }}
             >
               <Button type="submit" variant="destructive" className="flex">
-                Delete
+                <TrashSVG />
               </Button>
             </form>
           </div>

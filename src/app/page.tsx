@@ -23,5 +23,5 @@ export default async function HomePage() {
 // Work around for server-only query call
 async function GalleryWrapper() {
   const images = await getMyImages();
-  return <Gallery images={[...images, ...images, ...images]} />;
+  return <Gallery images={images} />;
 }
