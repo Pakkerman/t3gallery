@@ -30,6 +30,8 @@
   - [x] Selecting individual image
   - [x] Select All
   - [ ] Batch action ( download, delete )
+    - [x] Download
+    - [ ] Delete
   - [ ] ...
 
 - [ ] Infinite scroll
