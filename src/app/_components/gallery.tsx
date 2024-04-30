@@ -28,6 +28,7 @@ export function Gallery({ images }: { images: SelectImage[] }) {
           <Link
             key={item.id}
             href={selecting ? "" : `/img/${item.id}`}
+            scroll={!selecting}
             onClick={() => {
               if (selecting) {
                 select(item.id);
