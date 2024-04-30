@@ -29,9 +29,9 @@
   - [x] Extract component
   - [x] Selecting individual image
   - [x] Select All
-  - [ ] Batch action ( download, delete )
+  - [x] Batch action ( download, delete )
     - [x] Download
-    - [ ] Delete
+    - [x] Delete
   - [ ] ...
 
 - [ ] Infinite scroll
