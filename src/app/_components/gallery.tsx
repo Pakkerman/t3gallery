@@ -40,7 +40,7 @@ export function Gallery({ images }: { images: SelectImage[] }) {
         ))}
       </ul>
 
-      <div className="h-20" />
+      <div className={`${selecting ? "h-20" : "h-0"} transition-all`} />
 
       <div
         className={`${selecting ? "opacity-100" : "opacity-0"} fixed bottom-0 z-0 h-20 w-full bg-black/40 backdrop-blur-sm transition `}
