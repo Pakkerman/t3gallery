@@ -2,6 +2,7 @@
 import { Button } from "~/components/ui/button";
 import { DownloadSVG } from "./svgs";
 import { SelectImage } from "~/server/db/schema";
+import { toast } from "sonner";
 
 export function DownloadAllButton({
   images,
@@ -47,8 +48,10 @@ async function download(image: SelectImage): Promise<void> {
     link.download = name;
     link.click();
 
+    toast("Download success");
     URL.revokeObjectURL(link.href);
   } catch (error) {
     console.error("downloading error", error);
+    toast.error("something wrong with downloading", { id: "download" });
   }
 }
