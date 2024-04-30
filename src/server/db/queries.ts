@@ -1,17 +1,18 @@
-import { auth } from "@clerk/nextjs/server";
-import { and, eq } from "drizzle-orm";
-import { redirect } from "next/navigation";
 import "server-only";
-import { db } from "~/server/db";
-import { images } from "./schema";
-import analyticsServerClient from "../analytics";
+
+import { and, eq } from "drizzle-orm";
+import { auth } from "@clerk/nextjs/server";
 import { UTApi } from "uploadthing/server";
+import { redirect } from "next/navigation";
+
+import { db } from "~/server/db";
+import { images } from "~/server/db/schema";
+import analyticsServerClient from "~/server/analytics";
 
 const { deleteFiles } = new UTApi();
 
 export async function getMyImages() {
   const user = auth();
-
   if (!user.userId) throw new Error("Unauthorized");
 
   const images = await db.query.images.findMany({
