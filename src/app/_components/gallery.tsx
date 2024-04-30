@@ -6,6 +6,7 @@ import { useState } from "react";
 import { DownloadAllButton } from "~/components/downloadButton";
 import { TrashSVG } from "~/components/svgs";
 
+import { useAutoAnimate } from "@formkit/auto-animate/react";
 import { Button } from "~/components/ui/button";
 import { deleteImages } from "~/server/db/clientQueries";
 import { deleteImage } from "~/server/db/queries";
@@ -14,6 +15,7 @@ import type { SelectImage } from "~/server/db/schema";
 export function Gallery({ images }: { images: SelectImage[] }) {
   const [selecting, setSelecting] = useState(false);
   const [selections, setSelections] = useState<Array<number>>([]);
+  const [animationParent] = useAutoAnimate();
 
   const select = (id: number) => {
     if (selections.includes(id)) {
@@ -25,7 +27,10 @@ export function Gallery({ images }: { images: SelectImage[] }) {
 
   return (
     <section>
-      <ul className="flex select-none flex-wrap justify-center gap-4 p-4">
+      <ul
+        ref={animationParent}
+        className="flex select-none flex-wrap justify-center gap-4 p-4"
+      >
         {images.map((item) => (
           <Link
             key={item.id}
