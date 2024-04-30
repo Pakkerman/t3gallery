@@ -8,7 +8,6 @@ import { Button } from "~/components/ui/button";
 import { useUploadThing } from "~/utils/uploadthing";
 
 // inferred input off useUploadThing
-//
 type Input = Parameters<typeof useUploadThing>;
 
 const useUploadThingInputProps = (...args: Input) => {
@@ -36,7 +35,6 @@ const useUploadThingInputProps = (...args: Input) => {
 
 export function SimpleUploadButton() {
   const router = useRouter();
-
   const posthog = usePostHog();
 
   const { inputProps } = useUploadThingInputProps("imageUploader", {
@@ -45,7 +43,7 @@ export function SimpleUploadButton() {
       toast(
         <div className="flex items-center gap-2">
           <LoadingSpinnerSVG />
-          <span className="text-lg">Uploading...</span>
+          <span>Uploading...</span>
         </div>,
         { duration: 300000, id: "upload-begin" },
       );
@@ -63,11 +61,9 @@ export function SimpleUploadButton() {
   });
 
   return (
-    <div>
-      <label htmlFor="upload-button">
-        <Button variant="ghost">
-          <UploadSVG size={24} />
-        </Button>
+    <Button variant="ghost">
+      <label htmlFor="upload-button" className="cursor-pointer">
+        <UploadSVG size={24} />
       </label>
       <input
         type="file"
@@ -75,6 +71,6 @@ export function SimpleUploadButton() {
         className="sr-only"
         {...inputProps}
       />
-    </div>
+    </Button>
   );
 }
