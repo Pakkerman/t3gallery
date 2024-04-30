@@ -49,34 +49,32 @@ export function Gallery({ images }: { images: SelectImage[] }) {
           <div
             className={`${selecting ? "translate-y-[0%] opacity-100" : "translate-y-[200%] opacity-0"} flex grow items-center justify-between transition ease-in`}
           >
-            <>
-              <Button variant="destructive" disabled={selections.length === 0}>
-                <TrashSVG />
-              </Button>
+            <Button variant="destructive" disabled={selections.length === 0}>
+              <TrashSVG />
+            </Button>
 
-              <div className="flex items-center justify-center gap-2">
-                <Button
-                  className="rounded-full"
-                  variant="default"
-                  onClick={() => {
-                    if (selections.length === images.length) {
-                      setSelections([]);
-                    } else {
-                      setSelections([...images.map((item) => item.id)]);
-                    }
-                  }}
-                >
-                  {`${selections.length} selected`}
-                </Button>
-                <DownloadAllButton
-                  disabled={selections.length === 0}
-                  images={images.filter((item) => selections.includes(item.id))}
-                />
-              </div>
-            </>
+            <div className="flex items-center justify-center gap-2">
+              <Button
+                className="rounded-full"
+                variant="default"
+                onClick={() => {
+                  if (selections.length === images.length) {
+                    setSelections([]);
+                  } else {
+                    setSelections([...images.map((item) => item.id)]);
+                  }
+                }}
+              >
+                {`${selections.length} selected`}
+              </Button>
+              <DownloadAllButton
+                disabled={selections.length === 0}
+                images={images.filter((item) => selections.includes(item.id))}
+              />
+            </div>
           </div>
           <Button
-            className={`${selecting ? "rounded-md" : "rounded-full"}`}
+            className={`${selecting ? "rounded-md" : "rounded-[50%]"} transition-all`}
             variant="default"
             onClick={() => {
               if (selecting) {
