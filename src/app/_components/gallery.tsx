@@ -7,6 +7,8 @@ import { DownloadAllButton } from "~/components/downloadButton";
 import { TrashSVG } from "~/components/svgs";
 
 import { Button } from "~/components/ui/button";
+import { deleteImages } from "~/server/db/clientQueries";
+import { deleteImage } from "~/server/db/queries";
 import type { SelectImage } from "~/server/db/schema";
 
 export function Gallery({ images }: { images: SelectImage[] }) {
@@ -50,7 +52,18 @@ export function Gallery({ images }: { images: SelectImage[] }) {
           <div
             className={`${selecting ? "translate-y-[0%] opacity-100" : "translate-y-[200%] opacity-0"} flex grow items-center justify-between transition ease-in`}
           >
-            <Button variant="destructive" disabled={selections.length === 0}>
+            <Button
+              variant="destructive"
+              disabled={selections.length === 0}
+              onClick={async () => {
+                try {
+                  await deleteImages(selections);
+                  setSelections([]);
+                } catch (error) {
+                  console.error("something wrong with deleting", error);
+                }
+              }}
+            >
               <TrashSVG />
             </Button>
 
