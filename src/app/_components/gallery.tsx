@@ -42,7 +42,11 @@ export function Gallery({ images }: { images: SelectImage[] }) {
               }
             }}
           >
-            <GalleryItem item={item} selected={selections.includes(item.id)} />
+            <GalleryItem
+              item={item}
+              selecting={selecting}
+              selected={selections.includes(item.id)}
+            />
           </Link>
         ))}
       </ul>
@@ -114,13 +118,19 @@ export function Gallery({ images }: { images: SelectImage[] }) {
 function GalleryItem({
   item,
   selected,
+  selecting,
 }: {
   item: SelectImage;
   selected: boolean;
+  selecting: boolean;
 }) {
   return (
     <li
-      className={`flex h-36 w-48 flex-col border-2 ${selected && "border-red-400 p-2"} transition`}
+      className={`
+        ${selected && "border-emerald-400 p-2"}
+        ${selecting && "hover:border-emerald-400"}
+        flex h-36 w-48 flex-col rounded-md border-2 transition-all 
+      `}
     >
       <div className="flex h-36 flex-col overflow-hidden rounded-md ">
         <Image
